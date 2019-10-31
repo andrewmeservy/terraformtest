@@ -1,0 +1,27 @@
+version: 0.1
+
+env:
+  variables:
+    JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - apt-get update -y
+      - apt-get install -y jq
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...
+      - npm install -g npm@latest
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - "myBuild"
