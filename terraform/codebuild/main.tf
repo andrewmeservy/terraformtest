@@ -20,11 +20,7 @@ provider "github" {
   organization = "andrewmeservy"
 }
 
-# resource "aws_codebuild_webhook" "terraformTest" {
-#   project_name = "${aws_codebuild_project.terraformTest.name}"
-# }
-
-resource "aws_codebuild_webhook" "example" {
+resource "aws_codebuild_webhook" "terraformTest" {
   project_name = "${aws_codebuild_project.terraformTest.name}"
 
   filter_group {
@@ -32,26 +28,8 @@ resource "aws_codebuild_webhook" "example" {
       type = "EVENT"
       pattern = "PULL_REQUEST_MERGED"
     }
-
-    filter {
-      type = "HEAD_REF"
-      pattern = "master"
-    }
   }
 }
-
-# resource "github_repository_webhook" "terraformTest" {
-#   active     = true
-#   events     = ["PULL_REQUEST_MERGED"]
-#   repository = "terraformtest"
-
-#   configuration {
-#     url          = "${aws_codebuild_webhook.terraformTest.payload_url}"
-#     secret       = "${aws_codebuild_webhook.terraformTest.secret}"
-#     content_type = "json"
-#     insecure_ssl = false
-#   }
-# }
 
 resource "aws_codebuild_project" "terraformTest" {
   name          = "TerraformTest"
