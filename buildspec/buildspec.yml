@@ -25,7 +25,6 @@ phases:
     commands:
       - echo Entered the post_build phase...
       - echo Build completed on `date`
-      - dir
 artifacts:
   files:
-    - '/TerraformTest/TerraformTest/bin/Debug/'
+    - '/TerraformTest/TerraformTest/bin/Debug/netcoreapp2.2/*'
