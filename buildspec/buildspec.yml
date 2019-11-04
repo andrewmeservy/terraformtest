@@ -20,11 +20,11 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - dotnet build TerraformTest\\TerraformTest.sln
+      - dotnet build TerraformTest\\TerraformTest.sln -c "Release"
   post_build:
     commands:
       - echo Entered the post_build phase...
       - echo Build completed on `date`
 artifacts:
-  files:
-    - '/TerraformTest/TerraformTest/bin/Debug/netcoreapp2.2/*'
+    files:
+        - "**/*"
