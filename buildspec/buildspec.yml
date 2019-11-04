@@ -26,5 +26,4 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - "**/*"
-  base-directory: 'TerraformTest/staging'
+    - ".\..\TerraformTest\TerraformTest\bin\Release\*"
