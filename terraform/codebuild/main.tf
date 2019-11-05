@@ -31,6 +31,11 @@ resource "aws_codebuild_webhook" "terraformTest" {
   }
 }
 
+resource "aws_s3_bucket" "terraformTest" {
+  bucket = "andrewterraformtesttest"
+  acl    = "private"
+}
+
 resource "aws_codebuild_project" "terraformTest" {
   name          = "TerraformTest"
   description   = "this project is for testing terraform"
@@ -38,7 +43,10 @@ resource "aws_codebuild_project" "terraformTest" {
   service_role  = "arn:aws:iam::019763309060:role/service-role/codebuild-TerraformTest-service-role"
 
   artifacts {
-    type = "NO_ARTIFACTS"
+    type = "S3"
+	location = "andrewterraformtesttest"
+	packaging = "ZIP"
+	namespace_type = "NONE"
   }
 
   cache {
@@ -52,6 +60,11 @@ resource "aws_codebuild_project" "terraformTest" {
     image_pull_credentials_type = "CODEBUILD"
 	privileged_mode				= false
 	type                        = "LINUX_CONTAINER"
+
+	environment_variable {
+	  name = "BuildConfiguration"
+	  value = "Release"
+    }
   }
 
   source {
