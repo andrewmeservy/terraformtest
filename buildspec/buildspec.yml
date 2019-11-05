@@ -22,7 +22,7 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - dotnet build $SolutionPath -c $Configuration
+      - dotnet build $SolutionPath -c $BuildConfiguration
   post_build:
     commands:
       - echo Entered the post_build phase...
