@@ -36,6 +36,17 @@ resource "aws_s3_bucket" "terraformTest" {
   acl    = "private"
 }
 
+resource "aws_s3_bucket_public_access_block" "example" {
+  bucket = "${aws_s3_bucket.terraformTest.id}"
+  block_public_acls   = true
+  block_public_policy = true
+}
+
+resource "aws_s3_bucket_object" "object" {
+  bucket = "${aws_s3_bucket.terraformTest.id}"
+  key    = "TerraformTest"
+}
+
 resource "aws_codebuild_project" "terraformTest" {
   name          = "TerraformTest"
   description   = "this project is for testing terraform"
@@ -44,7 +55,8 @@ resource "aws_codebuild_project" "terraformTest" {
 
   artifacts {
     type = "S3"
-	location = "andrewterraformtesttest"
+	name = ""
+	location = "${aws_s3_bucket.terraformTest.id}"
 	packaging = "ZIP"
 	namespace_type = "NONE"
   }
