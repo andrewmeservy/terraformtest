@@ -15,6 +15,7 @@ phases:
       - apt-get update -y
       - apt-get install -y jq
       - apt-get install -y awscli
+      - apt-get install -y docker.io
   pre_build:
     commands:
       - echo Entered the pre_build phase...
@@ -31,7 +32,7 @@ phases:
 
       #docker build and push to aws ecr
       - $(aws ecr get-login --no-include-email --region us-east-2)
-      - dir
+      - docker version
       - docker build TerraformTest/TerraformTest
       - docker tag terraformtest:latest 019763309060.dkr.ecr.us-east-2.amazonaws.com/terraformtest:latest
       - docker push 019763309060.dkr.ecr.us-east-2.amazonaws.com/terraformtest:latest
