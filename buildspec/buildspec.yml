@@ -31,7 +31,7 @@ phases:
 
       #docker build and push to aws ecr
       - $(aws ecr get-login --no-include-email --region us-east-2)
-      - docker build -t terraformtest
+      - docker build terraformtest
       - docker tag terraformtest:latest 019763309060.dkr.ecr.us-east-2.amazonaws.com/terraformtest:latest
       - docker push 019763309060.dkr.ecr.us-east-2.amazonaws.com/terraformtest:latest
 artifacts:
