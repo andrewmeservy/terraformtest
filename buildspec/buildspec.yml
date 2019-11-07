@@ -15,8 +15,6 @@ phases:
       - apt-get update -y
       - apt-get install -y jq
       - apt-get install -y awscli
-      #- apt-get install -y docker.io
-      - sudo dockerd
   pre_build:
     commands:
       - echo Entered the pre_build phase...
